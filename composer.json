@@ -1,0 +1,19 @@
+{
+    "name": "hexlet/code",
+    "description": "php-project-48",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hexlet\\Code\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "nick.p",
+            "email": "n144647@yandex.ru"
+        }
+    ],
+    "require": {
+        "docopt/docopt": "^1.0"
+    }
+}
