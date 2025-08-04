@@ -34,7 +34,7 @@ $params = [
 $args = Docopt::handle($doc, $params);
 
 $firstPath = realpath($args['<firstFile>']);
-$secondPath = realpath($$args['<secondFile>']);
+$secondPath = realpath($args['<secondFile>']);
 
 parser($firstPath);
 parser($secondPath);
