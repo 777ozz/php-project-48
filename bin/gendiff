@@ -1,6 +1,17 @@
 #!/usr/bin/env php
 
 <?php
+
+$autoloadPath1 = __DIR__ . '/../../../autoload.php';
+$autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
+if (file_exists($autoloadPath1)) {
+    require_once $autoloadPath1;
+} else {
+    require_once $autoloadPath2;
+}
+
+use function Gendiff\Parser\parser;
+
 $doc = <<<DOC
 Generate diff
 
@@ -16,8 +27,14 @@ Options:
 
 DOC;
 
-require(__DIR__ . '/../vendor/docopt/docopt/src/docopt.php');
-$args = Docopt::handle($doc, array('version'=>'gendiff 1.0'));
-foreach ($args as $k=>$v)
-    echo $k.': '.json_encode($v).PHP_EOL;
+$params = [
+  'version'=>'gendiff 1.0',
+];
 
+$args = Docopt::handle($doc, $params);
+
+$firstPath = realpath($args['<firstFile>']);
+$secondPath = realpath($$args['<secondFile>']);
+
+parser($firstPath);
+parser($secondPath);
